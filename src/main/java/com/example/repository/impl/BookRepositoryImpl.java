@@ -2,17 +2,12 @@ package com.example.repository.impl;
 
 import com.example.model.Book;
 import com.example.repository.BookRepository;
-import java.util.List;
-import java.util.Optional;
-
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
