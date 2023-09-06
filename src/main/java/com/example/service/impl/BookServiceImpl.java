@@ -9,10 +9,8 @@ import com.example.model.Book;
 import com.example.repository.BookRepository;
 import com.example.repository.BookSpecificationBuilder;
 import com.example.service.BookService;
-import java.util.Collections;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 

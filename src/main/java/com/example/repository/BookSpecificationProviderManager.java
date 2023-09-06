@@ -1,11 +1,9 @@
 package com.example.repository;
 
 import com.example.model.Book;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
@@ -17,6 +15,7 @@ public class BookSpecificationProviderManager implements SpecificationProviderMa
         return bookSpecificationProviders.stream()
                 .filter(p -> p.getKey().equals(key))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Can't find correct specification provider for key " + key));
+                .orElseThrow(() -> new RuntimeException(
+                        "Can't find correct specification provider for key " + key));
     }
 }
