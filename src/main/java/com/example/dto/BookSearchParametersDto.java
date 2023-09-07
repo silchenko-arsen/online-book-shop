@@ -10,4 +10,6 @@ public class BookSearchParametersDto {
     private String[] authors;
     private String[] isbns;
     private String[] prices;
+    private String[] descriptions;
+    private String[] coverImages;
 }

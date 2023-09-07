@@ -1,4 +1,4 @@
-package com.example.repository.book;
+package com.example.repository.book.specificationprovider;
 
 import com.example.model.Book;
 import com.example.repository.SpecificationProvider;
@@ -7,14 +7,16 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PriceSpecificationProvider implements SpecificationProvider<Book> {
+public class CoverImageSpecificationProvider implements SpecificationProvider<Book> {
+    private static final String COVER_IMAGE = "coverImage";
+
     @Override
     public String getKey() {
-        return "price";
+        return COVER_IMAGE;
     }
 
     public Specification<Book> getSpecification(String[] params) {
         return (root, query, criteriaBuilder) -> root
-                .get("price").in(Arrays.stream(params).toArray());
+                .get(COVER_IMAGE).in(Arrays.stream(params).toArray());
     }
 }

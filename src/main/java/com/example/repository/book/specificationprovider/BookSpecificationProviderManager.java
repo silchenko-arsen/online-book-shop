@@ -1,6 +1,8 @@
-package com.example.repository;
+package com.example.repository.book.specificationprovider;
 
 import com.example.model.Book;
+import com.example.repository.SpecificationProvider;
+import com.example.repository.SpecificationProviderManager;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class BookSpecificationProviderManager implements SpecificationProviderManager<Book> {
-    private List<SpecificationProvider<Book>> bookSpecificationProviders;
+    private final List<SpecificationProvider<Book>> bookSpecificationProviders;
 
     @Override
     public SpecificationProvider<Book> getSpecificationProvider(String key) {
