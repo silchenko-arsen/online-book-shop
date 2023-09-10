@@ -61,7 +61,8 @@ public class BookController {
     }
 
     @GetMapping("/search")
-    @Operation(summary = "Search books by parameters", description = "Get a list of all books suitable for the parameters")
+    @Operation(summary = "Search books by parameters",
+            description = "Get a list of all books suitable for the parameters")
     public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
         return bookService.search(searchParameters);
     }
