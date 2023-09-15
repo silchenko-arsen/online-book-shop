@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-users
+      author: silchenko_arsen
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: email, value: 'silchenkoarsen@gmail.com' }
+              - column: { name: password, value: '$2a$10$l7wlcrpU7ncwbVK/qMUafe7gSFrzpXz3xj4Y3tOJo7BgQZT4rxMaq'}
+              - column: { name: first_name, value: 'Arsen' }
+              - column: { name: last_name, value: 'Silchenko' }
+              - column: { name: shipping_address, value: '23 Downton St.' }
+              - column: { name: is_deleted, valueBoolean: "false" }

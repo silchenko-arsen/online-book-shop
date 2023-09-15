@@ -1,4 +1,4 @@
-package com.example.dto;
+package com.example.dto.book;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -7,14 +7,15 @@ import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-public class CreateBookRequestDto {
-    @NotBlank
+public class BookDto {
+    private Long id;
+    @NotBlank(message = "Title mustn't be null or empty")
     private String title;
-    @NotBlank
+    @NotBlank(message = "Author mustn't be null or empty")
     private String author;
-    @NotBlank
+    @NotBlank(message = "Isbn mustn't be null or empty")
     private String isbn;
-    @NotNull
+    @NotNull(message = "Price mustn't be null")
     @Min(0)
     private BigDecimal price;
     private String description;

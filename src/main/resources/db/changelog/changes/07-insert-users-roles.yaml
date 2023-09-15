@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-users_roles
+      author: silchenko_arsen
+      changes:
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: { name: user_id, valueNumeric: 1 }
+              - column: { name: role_id, valueNumeric: 1 }
