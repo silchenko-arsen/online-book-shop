@@ -1,8 +1,8 @@
 package com.example.controller;
 
-import com.example.dto.BookDto;
-import com.example.dto.BookSearchParametersDto;
-import com.example.dto.CreateBookRequestDto;
+import com.example.dto.book.BookDto;
+import com.example.dto.book.BookSearchParametersDto;
+import com.example.dto.book.CreateBookRequestDto;
 import com.example.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -11,6 +11,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,12 +43,14 @@ public class BookController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Operation(summary = "Create a new book", description = "Create a new book")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.save(bookDto);
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Operation(summary = "Update a book", description = "Update a book by id")
     public BookDto updateBook(@PathVariable Long id, @RequestBody @Valid BookDto bookDto) {
         return bookService.update(bookDto, id);
@@ -55,6 +58,7 @@ public class BookController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @Operation(summary = "Delete a book", description = "Delete a book by id")
     public void deleteBook(@PathVariable Long id) {
         bookService.deleteById(id);
