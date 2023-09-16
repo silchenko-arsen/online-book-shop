@@ -1,4 +1,4 @@
-package com.example.repository.user;
+package com.example.repository;
 
 import com.example.model.User;
 import java.util.Optional;

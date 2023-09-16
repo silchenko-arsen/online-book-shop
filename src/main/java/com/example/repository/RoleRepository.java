@@ -1,4 +1,4 @@
-package com.example.repository.role;
+package com.example.repository;
 
 import com.example.model.Role;
 import java.util.Optional;

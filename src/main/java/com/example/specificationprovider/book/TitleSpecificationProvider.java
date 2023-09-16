@@ -1,22 +1,22 @@
-package com.example.repository.book.specificationprovider;
+package com.example.specificationprovider.book;
 
 import com.example.model.Book;
-import com.example.repository.SpecificationProvider;
+import com.example.specificationprovider.SpecificationProvider;
 import java.util.Arrays;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PriceSpecificationProvider implements SpecificationProvider<Book> {
-    private static final String PRICE = "price";
+public class TitleSpecificationProvider implements SpecificationProvider<Book> {
+    private static final String TITLE = "title";
 
     @Override
     public String getKey() {
-        return PRICE;
+        return TITLE;
     }
 
     public Specification<Book> getSpecification(String[] params) {
         return (root, query, criteriaBuilder) -> root
-                .get(PRICE).in(Arrays.stream(params).toArray());
+                .get(TITLE).in(Arrays.stream(params).toArray());
     }
 }
