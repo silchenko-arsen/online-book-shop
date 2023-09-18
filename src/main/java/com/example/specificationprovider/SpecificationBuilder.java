@@ -1,4 +1,4 @@
-package com.example.repository;
+package com.example.specificationprovider;
 
 import com.example.dto.book.BookSearchParametersDto;
 import org.springframework.data.jpa.domain.Specification;

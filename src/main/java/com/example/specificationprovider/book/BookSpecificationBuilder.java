@@ -1,9 +1,9 @@
-package com.example.repository.book.specificationprovider;
+package com.example.specificationprovider.book;
 
 import com.example.dto.book.BookSearchParametersDto;
 import com.example.model.Book;
-import com.example.repository.SpecificationBuilder;
-import com.example.repository.SpecificationProviderManager;
+import com.example.specificationprovider.SpecificationBuilder;
+import com.example.specificationprovider.SpecificationProviderManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;

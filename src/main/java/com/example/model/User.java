@@ -49,13 +49,9 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
     @Column(nullable = false)
     private boolean isDeleted;
-
-    public User() {
-        this.roles = new HashSet<>();
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
