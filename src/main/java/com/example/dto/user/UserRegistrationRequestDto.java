@@ -1,7 +1,6 @@
 package com.example.dto.user;
 
 import com.example.validation.FieldMatch;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;

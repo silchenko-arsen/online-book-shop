@@ -16,9 +16,9 @@ import com.example.repository.CartItemRepository;
 import com.example.repository.ShoppingCartRepository;
 import com.example.repository.UserRepository;
 import com.example.service.ShoppingCartService;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -57,7 +57,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    public CartItemDto updateBookQuantity(Long cartItemId, CartItemQuantityDto cartItemQuantityDto) {
+    public CartItemDto updateBookQuantity(Long cartItemId,
+                                          CartItemQuantityDto cartItemQuantityDto) {
         CartItem cartItem = cartItemRepository.findById(cartItemId)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find cart item "
                         + "by cart item id " + cartItemId));

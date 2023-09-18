@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @Tag(name = "Shopping cart management", description = "Endpoints for managing shopping cart")
 @RequiredArgsConstructor
 @RestController
@@ -63,6 +62,7 @@ public class ShoppingCartController {
         if (authentication != null && authentication.isAuthenticated()) {
             return authentication.getName();
         }
-        throw new EntityNotFoundException("Can't find authentication name by authentication " + authentication);
+        throw new EntityNotFoundException(
+                "Can't find authentication name by authentication " + authentication);
     }
 }

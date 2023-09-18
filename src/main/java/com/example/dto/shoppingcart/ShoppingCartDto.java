@@ -2,9 +2,9 @@ package com.example.dto.shoppingcart;
 
 import com.example.dto.cartitem.CartItemDto;
 import jakarta.validation.constraints.Min;
-import lombok.Data;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Data;
 
 @Data
 public class ShoppingCartDto {
