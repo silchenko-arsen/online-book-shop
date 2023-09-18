@@ -16,8 +16,7 @@ public class BookDto {
     private String author;
     @NotBlank(message = "Isbn mustn't be null or empty")
     private String isbn;
-    @NotNull(message = "Price mustn't be null")
-    @Min(0)
+    @Min(value = 0, message = "Price mustn't be negative")
     private BigDecimal price;
     private String description;
     private String coverImage;

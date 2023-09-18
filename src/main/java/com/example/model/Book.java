@@ -12,6 +12,8 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
+
+import jakarta.validation.constraints.Min;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -34,6 +36,7 @@ public class Book {
     @Column(nullable = false, unique = true)
     private String isbn;
     @Column(nullable = false)
+    @Min(0)
     private BigDecimal price;
     private String description;
     @Column(name = "cover_image")

@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
 @FieldMatch(first = "password", second = "repeatPassword", message = "Passwords must match")
 public class UserRegistrationRequestDto {
     @NotBlank
