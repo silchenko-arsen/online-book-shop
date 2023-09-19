@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
@@ -34,6 +35,7 @@ public class Book {
     @Column(nullable = false, unique = true)
     private String isbn;
     @Column(nullable = false)
+    @Min(0)
     private BigDecimal price;
     private String description;
     @Column(name = "cover_image")
