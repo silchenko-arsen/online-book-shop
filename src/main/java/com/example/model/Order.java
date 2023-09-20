@@ -52,7 +52,7 @@ public class Order {
 
     public enum Status {
         NEW,
-        PROCEED,
+        IN_PROCESS,
         SHIPPED,
         DELIVERED,
         CANCELED,

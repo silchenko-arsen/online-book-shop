@@ -7,6 +7,7 @@ import com.example.dto.orderitem.OrderItemResponseDto;
 import com.example.exception.EntityNotFoundException;
 import com.example.mapper.OrderItemMapper;
 import com.example.mapper.OrderMapper;
+import com.example.model.CartItem;
 import com.example.model.Order;
 import com.example.model.OrderItem;
 import com.example.model.ShoppingCart;
@@ -43,16 +44,9 @@ public class OrderServiceImpl implements OrderService {
         ShoppingCart shoppingCart = shoppingCartRepository.findShoppingCartByUserId(user.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Can't find shopping cart "
                         + "by user id " + user.getId()));
-        Set<OrderItem> orderItems = shoppingCart.getCartItems().stream()
-                .map(cartItem -> {
-                    OrderItem orderItem = new OrderItem();
-                    orderItem.setBook(cartItem.getBook());
-                    orderItem.setQuantity(cartItem.getQuantity());
-                    orderItem.setPrice(cartItem.getBook().getPrice());
-                    orderItem.setOrder(order);
-                    return orderItemRepository.save(orderItem);
-                })
-                .collect(Collectors.toSet());
+        List<OrderItem> orderItems = shoppingCart.getCartItems().stream()
+                .map(cartItem -> mapToOrderItem(cartItem, order))
+                .toList();
         shoppingCartRepository.delete(shoppingCart);
         return orderMapper.toDto(order);
     }
@@ -68,9 +62,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderItemResponseDto> getAllOrderItems(Long orderId, Pageable pageable) {
-        Order order = orderRepository.findByIdWithOrderItems(orderId)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Can't find order by order id " + orderId));
+        Order order = findByIdWithOrderItems(orderId);
         return order.getOrderItems().stream()
                 .map(orderItemMapper::toResponseDto)
                 .toList();
@@ -88,9 +80,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto updateOrderStatus(Long orderId, OrderStatusDto statusDto) {
-        Order order = orderRepository.findByIdWithOrderItems(orderId)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Can't find order by id " + orderId));
+        Order order = findByIdWithOrderItems(orderId);
         order.setStatus(statusDto.getStatus());
         return orderMapper.toDto(orderRepository.save(order));
     }
@@ -98,6 +88,21 @@ public class OrderServiceImpl implements OrderService {
     private User getUserByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(
                 () -> new EntityNotFoundException("Can not find user by email" + email));
+    }
+
+    private OrderItem mapToOrderItem(CartItem cartItem, Order order) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setBook(cartItem.getBook());
+        orderItem.setQuantity(cartItem.getQuantity());
+        orderItem.setPrice(cartItem.getBook().getPrice());
+        orderItem.setOrder(order);
+        return orderItem;
+    }
+
+    private Order findByIdWithOrderItems(Long id) {
+        return orderRepository.findByIdWithOrderItems(id)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Can't find order by id " + id));
     }
 
     private Order createOrder(User user,
