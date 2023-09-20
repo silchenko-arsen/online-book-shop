@@ -31,7 +31,7 @@ public class CategoryController {
     private final BookService bookService;
 
     @GetMapping
-    @Operation(summary = "Get all books", description = "Get a list of all available books")
+    @Operation(summary = "Get all categories", description = "Get a list of all categories")
     public List<CategoryDto> getAll(Pageable pageable) {
         return categoryService.findAll(pageable);
     }
