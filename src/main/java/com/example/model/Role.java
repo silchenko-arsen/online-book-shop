@@ -24,7 +24,7 @@ public class Role {
     @Column(name = "role_name", unique = true, nullable = false)
     @Enumerated(value = EnumType.STRING)
     private RoleName name;
-    @Column(nullable = false)
+    @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted;
 
     public enum RoleName {
