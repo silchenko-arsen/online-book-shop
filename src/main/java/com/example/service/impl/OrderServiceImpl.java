@@ -38,10 +38,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto save(String email, OrderShippingAddressDto shippingAddress) {
         User user = getUserByEmail(email);
-        Order order = createOrder(user, shippingAddress);
         ShoppingCart shoppingCart = shoppingCartRepository.findShoppingCartByUserId(user.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Can't find shopping cart "
                         + "by user id " + user.getId()));
+        Order order = createOrder(user, shippingAddress, shoppingCart);
         List<OrderItem> orderItems = shoppingCart.getCartItems().stream()
                 .map(cartItem -> mapToOrderItem(cartItem, order))
                 .toList();
@@ -104,10 +104,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Order createOrder(User user,
-                              OrderShippingAddressDto shippingAddress) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findShoppingCartByUserId(user.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Can't find shopping cart "
-                        + "by user id " + user.getId()));
+                              OrderShippingAddressDto shippingAddress, ShoppingCart shoppingCart) {
         double total = shoppingCart.getCartItems().stream()
                 .mapToDouble(cartItem -> (double) cartItem.getQuantity()
                         * cartItem.getBook().getPrice().doubleValue())
