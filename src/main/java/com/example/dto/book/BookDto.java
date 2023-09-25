@@ -3,10 +3,12 @@ package com.example.dto.book;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true)
 public class BookDto {
     private Long id;
     @NotBlank(message = "Title mustn't be null or empty")
@@ -19,5 +21,5 @@ public class BookDto {
     private BigDecimal price;
     private String description;
     private String coverImage;
-    private Set<Long> categoryIds;
+    private List<Long> categoryIds;
 }

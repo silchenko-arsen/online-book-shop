@@ -1,10 +1,10 @@
 package com.example.dto.book;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
-@Getter
-@Setter
+@Data
+@Accessors(chain = true)
 public class BookSearchParametersDto {
     private String[] titles;
     private String[] authors;
