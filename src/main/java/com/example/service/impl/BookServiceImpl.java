@@ -38,19 +38,19 @@ public class BookServiceImpl implements BookService {
     public BookDto update(Long id, BookDto bookDto) {
         Book book = bookRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(
-                    "Book not found with id: " + id));
+                        "Can't find book by id " + id));;
         book.setTitle(bookDto.getTitle());
         book.setAuthor(bookDto.getAuthor());
         book.setIsbn(bookDto.getIsbn());
         book.setPrice(bookDto.getPrice());
         book.setDescription(bookDto.getDescription());
         book.setCoverImage(bookDto.getCoverImage());
-        Set<Long> categoryIds = bookDto.getCategoryIds();
+        List<Long> categoryIds = bookDto.getCategoryIds();
         Set<Category> categories = new HashSet<>();
         for (Long categoryId : categoryIds) {
             Category category = categoryRepository.findById(categoryId)
                     .orElseThrow(() -> new EntityNotFoundException(
-                            "Category not found with id: " + id));
+                                "Category not found with id: " + id));
             categories.add(category);
         }
         book.setCategories(categories);

@@ -42,7 +42,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
             HttpStatusCode status) {
         Map<String, Object> body = new LinkedHashMap<>();
         body.put("timestamp", LocalDateTime.now());
-        body.put("status", HttpStatus.INTERNAL_SERVER_ERROR);
+        body.put("status", HttpStatus.NOT_FOUND);
         body.put("message", ex.getMessage());
         return new ResponseEntity<>(body, headers, status);
     }
