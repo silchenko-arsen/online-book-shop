@@ -37,7 +37,7 @@ public class ShoppingCartController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add a cart item", description = "Add a cart item to shopping cart")
     public CartItemDto addCartItem(@RequestBody @Valid CartItemRequestDto cartItemRequestDto) {
         return shoppingCartService.addCartItem(getAuthenticationName(), cartItemRequestDto);

@@ -39,24 +39,24 @@ class CategoryServiceTest {
     @InjectMocks
     private CategoryServiceImpl categoryService;
 
-    private Category category1;
+    private Category category;
 
     @BeforeEach
     void setUp() {
-        category1 = new Category();
-        category1.setId(1L);
-        category1.setName("Fiction");
+        category = new Category();
+        category.setId(1L);
+        category.setName("Fiction");
     }
 
     @Test
     public void findAll_WithValidPageable_ShouldReturnListOfCategories() {
         List<Category> categories = new ArrayList<>();
-        categories.add(category1);
+        categories.add(category);
         Page<Category> categoriesPage = new PageImpl<>(categories);
         when(categoryRepository.findAll(any(Pageable.class))).thenReturn(categoriesPage);
         List<CategoryDto> expected = new ArrayList<>();
         expected.add(createCategoryDto());
-        when(categoryMapper.toDto(category1))
+        when(categoryMapper.toDto(category))
                 .thenReturn(createCategoryDto());
         List<CategoryDto> actual = categoryService.findAll(mock(Pageable.class));
         Assertions.assertEquals(expected, actual);
@@ -74,12 +74,12 @@ class CategoryServiceTest {
     @Test
     public void saveCategory_WithValidCategoryDto_ShouldReturnSavedCategory() {
         CategoryDto expected = createCategoryDto();
-        when(categoryMapper.toEntity(createCategoryDto())).thenReturn(category1);
-        when(categoryRepository.save(category1)).thenReturn(category1);
-        when(categoryMapper.toDto(category1)).thenReturn(expected);
+        when(categoryMapper.toEntity(createCategoryDto())).thenReturn(category);
+        when(categoryRepository.save(category)).thenReturn(category);
+        when(categoryMapper.toDto(category)).thenReturn(expected);
         CategoryDto actual = categoryService.save(expected);
         Assertions.assertEquals(expected, actual);
-        verify(categoryRepository, times(1)).save(category1);
+        verify(categoryRepository, times(1)).save(category);
     }
 
     @Test
@@ -88,12 +88,12 @@ class CategoryServiceTest {
         Category updated = new Category();
         updated.setId(expected.getId());
         updated.setName("Fictions");
-        when(categoryRepository.findById(expected.getId())).thenReturn(Optional.of(category1));
-        when(categoryRepository.save(category1)).thenReturn(updated);
+        when(categoryRepository.findById(expected.getId())).thenReturn(Optional.of(category));
+        when(categoryRepository.save(category)).thenReturn(updated);
         when(categoryMapper.toDto(updated)).thenReturn(expected.setName("Fictions"));
         CategoryDto actual = categoryService.update(expected.getId(), expected);
         Assertions.assertEquals(expected, actual);
-        verify(categoryRepository, times(1)).save(category1);
+        verify(categoryRepository, times(1)).save(category);
     }
 
     @Test
@@ -102,7 +102,7 @@ class CategoryServiceTest {
         verify(categoryRepository, times(1)).deleteById(anyLong());
     }
 
-    private static CategoryDto createCategoryDto() {
+    private CategoryDto createCategoryDto() {
         return new CategoryDto()
                 .setId(1L).setName("Fiction");
     }
