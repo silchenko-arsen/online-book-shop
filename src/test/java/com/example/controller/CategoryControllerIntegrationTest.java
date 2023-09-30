@@ -73,7 +73,7 @@ class CategoryControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     @Sql(scripts = "classpath:database/delete-for-book-category-tests.sql",
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = "classpath:database/delete-for-book-category-tests.sql",
@@ -100,7 +100,7 @@ class CategoryControllerIntegrationTest {
     @Test
     @Sql(scripts = "classpath:database/delete-for-book-category-tests.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void createCategory_InvalidData_BadRequest() throws Exception {
         CategoryDto invalidCategoryRequest = new CategoryDto();
         String jsonRequest = objectMapper.writeValueAsString(invalidCategoryRequest);
@@ -156,7 +156,7 @@ class CategoryControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     @Sql(scripts = "classpath:database/add-for-book-category-tests.sql",
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = "classpath:database/delete-for-book-category-tests.sql",
@@ -181,7 +181,7 @@ class CategoryControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     public void updateCategory_InValidId_ReturnError() throws Exception {
         long id = 5;
         CategoryDto updatedBook = new CategoryDto()
@@ -194,7 +194,7 @@ class CategoryControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     @Sql(scripts = "classpath:database/delete-for-book-category-tests.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void deleteCategory_Success() throws Exception {

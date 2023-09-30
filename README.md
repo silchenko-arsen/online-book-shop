@@ -2,11 +2,15 @@
 ____
 ## Description
 
-This project allows users to register and login, as well as manage books, categories and make purchases in this store.
+Online Book Shop project is a comprehensive solution for managing user authentication, book management, category management, order placement, and shopping cart functionality. This project is designed to provide a seamless experience for both book enthusiasts and administrators.
 
 ## Technologies and Tools Used
 
 In this project I used: **Spring Boot, Spring Security, Spring Web, Spring Data JPA, Hibernate, Swagger, Pagination, OpenAPI**.
+
+## Diagram 
+
+![img.png](img.png)
 ___
 
 ### Controllers
@@ -166,7 +170,11 @@ I use JWT (JSON Web Tokens) for authentication. To access protected endpoints, i
 ## Setup and Usage
 
 To set up and use this project, follow these steps:
-1. Clone the repository.
-2. Install Docker.
-3. Build and run the application.
-4. Enter URL:`http://localhost:8088{endpoint}` in Postman. 
+1. Install Intellij IDEA Ultimate Edition on your computer.
+2. Clone the repository on your computer.
+3. Install Docker Desktop on your computer.
+4. Write three commands in the terminal: `mvn clean package`, `docker-compose build` and `docker-compose up`.
+5. Enter URL:`http://localhost:8088{endpoint}` in Postman. 
+
+## Video
+https://youtu.be/3xIB0mB3Rr4
