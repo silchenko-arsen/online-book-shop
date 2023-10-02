@@ -3,7 +3,6 @@ package com.example.config;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 import com.example.security.JwtAuthenticationFilter;
-import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,12 +36,10 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
-                                .requestMatchers("/api/auth/**")
+                                .requestMatchers("/auth/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
-
                 )
                 .httpBasic(withDefaults())
                 .sessionManagement(session -> session
@@ -59,5 +56,4 @@ public class SecurityConfig {
     ) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
 }

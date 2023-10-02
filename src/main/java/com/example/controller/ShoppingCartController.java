@@ -31,7 +31,7 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
 
     @GetMapping
-    @Operation(summary = "Get get a shopping cart", description = "Get a shopping cart")
+    @Operation(summary = "Get a shopping cart", description = "Get a shopping cart")
     public ShoppingCartDto getShoppingCart() {
         return shoppingCartService.getShoppingCartByUserEmail(getAuthenticationName());
     }

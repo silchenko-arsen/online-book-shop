@@ -73,7 +73,7 @@ class BookControllerIntegrationTest {
         }
     }
 
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     @Test
     @Sql(scripts = "classpath:database/delete-for-book-category-tests.sql",
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
@@ -95,7 +95,7 @@ class BookControllerIntegrationTest {
         EqualsBuilder.reflectionEquals(expected, actual, "id");
     }
 
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     @Test
     void createBook_InValidRequestDto_Failed() throws Exception {
         CreateBookRequestDto requestDto = new CreateBookRequestDto()
@@ -156,7 +156,7 @@ class BookControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     @Sql(scripts = "classpath:database/delete-for-book-category-tests.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void updateBook_Ok() throws Exception {
@@ -179,7 +179,7 @@ class BookControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @WithMockUser(username = "admin", authorities = {"ADMIN"})
     public void updateBook_NotOk_NotFound() throws Exception {
         long id = 5;
         CreateBookRequestDto updateBookRequestDto = createBook()
@@ -232,7 +232,7 @@ class BookControllerIntegrationTest {
     }
 
     @Test
-    @WithMockUser(username = "admin", roles = "ADMIN")
+    @WithMockUser(username = "admin", authorities = "ADMIN")
     void deleteBook_ValidId_Success() throws Exception {
         long id = 1;
         mockMvc.perform(delete("/books/{id}", id))
