@@ -83,29 +83,29 @@ class BookServiceImplTest {
         BookDto bookDto = createBookDto();
         List<BookDto> expected = new ArrayList<>();
         expected.add(bookDto);
-        when(bookRepository.findAll(any(Pageable.class))).thenReturn(bookPage);
+        when(bookRepository.findAllWithCategories(any(Pageable.class))).thenReturn(bookPage);
         when(bookMapper.toDto(book)).thenReturn(bookDto);
         List<BookDto> actual = bookService.findAll(mock(Pageable.class));
         assertEquals(expected, actual);
-        verify(bookRepository, times(1)).findAll(any(Pageable.class));
+        verify(bookRepository, times(1)).findAllWithCategories(any(Pageable.class));
     }
 
     @Test
     public void findById_WithValidId_ShouldReturnBook() {
-        when(bookRepository.findById(ID)).thenReturn(Optional.of(book));
+        when(bookRepository.findByIdWithCategories(ID)).thenReturn(Optional.of(book));
         BookDto expected = createBookDto();
         when(bookMapper.toDto(book)).thenReturn(expected);
         BookDto actual = bookService.findById(ID);
         assertEquals(expected, actual);
-        verify(bookRepository, times(1)).findById(ID);
+        verify(bookRepository, times(1)).findByIdWithCategories(ID);
     }
 
     @Test
     public void findById_WithInvalidId_ShouldThrowEntityNotFoundException() {
-        when(bookRepository.findById(ID)).thenReturn(Optional.empty());
+        when(bookRepository.findByIdWithCategories(ID)).thenReturn(Optional.empty());
         assertThrows(EntityNotFoundException.class,
                 () -> bookService.findById(ID));
-        verify(bookRepository, times(1)).findById(ID);
+        verify(bookRepository, times(1)).findByIdWithCategories(ID);
     }
 
     @Test
